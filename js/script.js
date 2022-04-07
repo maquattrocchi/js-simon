@@ -47,43 +47,53 @@ function inizioGioco(){
     setTimeout(()=>{
         secondoBlocco.classList.add('d-none');
         terzoBlocco.classList.remove('d-none');
-    },30000)
+    },2000)
     //orologio
-    const clock = document.getElementById('clock');
-    console.log(clock);
-    let timer = setInterval(myFunction, 1000);
-    let maxTime = 29;
-    function myFunction(){
-    if(maxTime === 0){
-        clearInterval(timer);
-    }
-    document.getElementById('time').innerHTML = `${maxTime}`
-    console.log(maxTime);
-    maxTime--;
-    }
+    // const clock = document.getElementById('clock');
+    // console.log(clock);
+    // let timer = setInterval(myFunction, 1000);
+    // let maxTime = 29;
+    // function myFunction(){
+    // if(maxTime === 0){
+    //     clearInterval(timer);
+    // }
+    // document.getElementById('time').innerHTML = `${maxTime}`
+    // console.log(maxTime);
+    // maxTime--;
+    // }
 }
 //funzione controllo numeri
 function controlloNumeri(){
     //creazione lista numeri utente e numeri indovinati
+    //controllo dei numeri
     let numUtente = parseInt(document.getElementById('number').value);
-    numeriArray.push(numUtente);
-    attempts--;
-    if(numeriRandomArray.includes(numUtente)){
-        numeriIndovinati.push(numUtente);
-    }
-    if(numeriArray.length === 5){
-        fineInserimento(numeriRandomArray, numeriArray, numeriIndovinati);
+    if (!numeriArray.includes(numUtente)){
+        numeriArray.push(numUtente);
+        attempts--;
+        console.log('numero inserito')
+    } else {
+        alert('Hai già inserito questo numero')
+        console.log('numero non inserito')
     }
     // definizione numeri rimasti
     let tentativi = document.getElementById('tentativi');
     tentativi.innerHTML = `${attempts}`;
-
-    console.log(numeriArray);
+    // scomparsa input una volta inseriti 5 numeri e controllo numeri indovinati
+    if(numeriArray.length === 5){
+        console.log(numeriArray);
+        fineInserimento(numeriRandomArray, numeriArray, numeriIndovinati);
+    }
     console.log(numeriIndovinati);
     console.log(numUtente);
 }
 //funzione quando vengono inseriti 5 numeri
 function fineInserimento(numeriRandomArray, numeriArray, numeriIndovinati){
+    //verifica numeri indovinati
+    for (let i = 0; i <= numeriArray.length; i++){
+        if(numeriRandomArray.includes(numeriArray[i])){
+            numeriIndovinati.push(numeriArray[i]);
+        }
+    }
     //cambio pagina
     terzoBlocco.classList.add('d-none');
     soluzioni.classList.remove('d-none');
