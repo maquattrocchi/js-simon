@@ -47,20 +47,20 @@ function inizioGioco(){
     setTimeout(()=>{
         secondoBlocco.classList.add('d-none');
         terzoBlocco.classList.remove('d-none');
-    },2000)
+    },30000)
     //orologio
-    // const clock = document.getElementById('clock');
-    // console.log(clock);
-    // let timer = setInterval(myFunction, 1000);
-    // let maxTime = 29;
-    // function myFunction(){
-    // if(maxTime === 0){
-    //     clearInterval(timer);
-    // }
-    // document.getElementById('time').innerHTML = `${maxTime}`
-    // console.log(maxTime);
-    // maxTime--;
-    // }
+    const clock = document.getElementById('clock');
+    console.log(clock);
+    let timer = setInterval(myFunction, 1000);
+    let maxTime = 29;
+    function myFunction(){
+    if(maxTime === 0){
+        clearInterval(timer);
+    }
+    document.getElementById('time').innerHTML = `${maxTime}`
+    console.log(maxTime);
+    maxTime--;
+    }
 }
 //funzione controllo numeri
 function controlloNumeri(){
